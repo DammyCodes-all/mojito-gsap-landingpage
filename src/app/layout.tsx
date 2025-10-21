@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import GsapPlugin from "@/components/gsapPlugin";
 
 export const metadata: Metadata = {
   title: "Mojito GSAP Landing Page",
@@ -15,8 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased`}>
-        <Navbar />
-        <main>{children}</main>
+        <GsapPlugin>
+          <Navbar />
+          <main>{children}</main>
+        </GsapPlugin>
       </body>
     </html>
   );

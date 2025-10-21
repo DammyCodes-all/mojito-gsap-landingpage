@@ -1,5 +1,11 @@
+import { Hero } from "@/components/hero/Hero";
+
 const Page = () => {
-  return <div>Page</div>;
+  return (
+    <div className="overflow-x-hidden w-full">
+      <Hero />
+    </div>
+  );
 };
 
 export default Page;
