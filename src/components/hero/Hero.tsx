@@ -2,18 +2,21 @@
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { SplitText } from "gsap/all";
+import { ScrollTrigger, SplitText } from "gsap/all";
 import Image from "next/image";
 import { useRef } from "react";
+import { useMediaQuery } from "react-responsive";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export const Hero = () => {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   useGSAP(() => {
     const heroSplit = new SplitText(titleRef.current, { type: "chars, words" });
     const paragraphSplit = new SplitText(".subtitle", { type: "lines" });
-    // paragraphSplit.lines.forEach((line) => {
-    //   line.className += "md:text-center";
-    // });
     heroSplit.chars.forEach((char) => (char.className += "text-gradient"));
     gsap.from(heroSplit.chars, {
       yPercent: 60,
@@ -57,66 +60,94 @@ export const Hero = () => {
         },
         0
       );
+    if (!videoRef.current) return;
+    const vidTweenStartValue = isMobile ? "top 50%" : "center 60%";
+    const vidTweenEndValue = isMobile ? "120% top" : "bottom top";
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: videoRef.current,
+        start: vidTweenStartValue,
+        end: vidTweenEndValue,
+        scrub: true,
+        pin: true,
+      },
+    });
+    videoRef.current.onloadedmetadata = () => {
+      tl.to(videoRef.current, {
+        currentTime: videoRef.current?.duration,
+      });
+    };
   }, []);
   return (
-    <section
-      className="relative z-10 min-h-dvh w-full border border-transparent"
-      id="hero"
-    >
-      <Image
-        src={"/images/noise.png"}
-        className="absolute inset-0 size-full -z-50"
-        fill
-        loading="eager"
-        priority
-        alt="bg-noise-image"
-      />
-      <h1
-        className="font-modern-negra text-8xl  md:mt-32 mt-40 md:text-[20vw] leading-none text-center"
-        ref={titleRef}
+    <>
+      <section
+        className="relative z-10 min-h-dvh w-full border border-transparent"
+        id="hero"
       >
-        MOJITO
-      </h1>
-      <Image
-        src={"/images/hero-left-leaf.png"}
-        width={300}
-        height={300}
-        id="left-leaf"
-        alt="hero-left-leaf"
-        className="absolute left-0 md:top-20 xl:top-36 2xl:top-52 md:bottom-auto -bottom-20 md:w-fit w-1/3"
-      />
-      <Image
-        src={"/images/hero-right-leaf.png"}
-        width={300}
-        height={300}
-        alt="hero-right-leaf"
-        id="right-leaf"
-        className="absolute right-0 md:bottom-0 xl:top-0 2xl:top-12 top-1/2 md:w-fit w-24"
-      />
-      <div className="container mx-auto absolute left-1/2 -translate-x-1/2 lg:bottom-20 top-auto md:top-[45vh] flex justify-between items-end px-5">
-        <div className="flex lg:flex-row flex-col w-full gap-10 justify-center lg:justify-between items-center lg:items-end mx-auto">
-          <section className="space-y-2 hidden md:block">
-            <p className="text-md">Cool. Crisp. Classic</p>
-            <p className="font-modern-negra text-6xl  text-yellow subtitle max-w-xl ">
-              Sip the spirit <br />
-              of summer
-            </p>
-          </section>
-          <section className="space-y-5 text-lg lg:max-w-2xs md:max-w-xs w-full md:block flex flex-col items-center lg:items-end text-center">
-            <p className="lg:text-left text-center subtitle max-w-xl 2xl:text-start">
-              Every cocktail on our menu is a blend of premium ingredients,
-              creative flair, and timeless recipes — designed to delight your
-              senses.
-            </p>
-            <a
-              href="#cocktails"
-              className="font-semibold opacity-80 2xl:text-start text-center hover:text-yellow"
-            >
-              View cocktails
-            </a>
-          </section>
+        <Image
+          src={"/images/noise.png"}
+          className="absolute inset-0 size-full -z-50"
+          fill
+          loading="eager"
+          priority
+          alt="bg-noise-image"
+        />
+        <h1
+          className="font-modern-negra text-8xl  md:mt-32 mt-40 md:text-[20vw] leading-none text-center"
+          ref={titleRef}
+        >
+          MOJITO
+        </h1>
+        <Image
+          src={"/images/hero-left-leaf.png"}
+          width={300}
+          height={300}
+          id="left-leaf"
+          alt="hero-left-leaf"
+          className="absolute left-0 md:top-20 xl:top-36 2xl:top-52 md:bottom-auto -bottom-20 md:w-fit w-1/3"
+        />
+        <Image
+          src={"/images/hero-right-leaf.png"}
+          width={300}
+          height={300}
+          alt="hero-right-leaf"
+          id="right-leaf"
+          className="absolute right-0 md:bottom-0 xl:top-0 2xl:top-12 top-1/2 md:w-fit w-24"
+        />
+        <div className="container mx-auto absolute left-1/2 -translate-x-1/2 lg:bottom-20 top-auto md:top-[45vh] flex justify-between items-end px-5">
+          <div className="flex lg:flex-row flex-col w-full gap-10 justify-center lg:justify-between items-center lg:items-end mx-auto">
+            <section className="space-y-2 hidden md:block">
+              <p className="text-md">Cool. Crisp. Classic</p>
+              <p className="font-modern-negra text-6xl  text-yellow subtitle max-w-xl ">
+                Sip the spirit <br />
+                of summer
+              </p>
+            </section>
+            <section className="space-y-5 text-lg lg:max-w-2xs md:max-w-xs w-full md:block flex flex-col items-center lg:items-end text-center">
+              <p className="lg:text-left text-center subtitle max-w-xl 2xl:text-start">
+                Every cocktail on our menu is a blend of premium ingredients,
+                creative flair, and timeless recipes — designed to delight your
+                senses.
+              </p>
+              <a
+                href="#cocktails"
+                className="font-semibold opacity-80 2xl:text-start text-center hover:text-yellow"
+              >
+                View cocktails
+              </a>
+            </section>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section className="w-full md:h-[80%] h-1/2 absolute bottom-0 left-0 md:object-contain object-bottom object-cover inset-0 ">
+        <video
+          src={"/videos/input.mp4"}
+          muted
+          playsInline
+          preload="auto"
+          ref={videoRef}
+        />
+      </section>
+    </>
   );
 };
