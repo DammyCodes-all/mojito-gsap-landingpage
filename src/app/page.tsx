@@ -4,6 +4,7 @@ const Page = () => {
   return (
     <div className="overflow-x-hidden w-full">
       <Hero />
+      <div className="h-dvh"></div>
     </div>
   );
 };

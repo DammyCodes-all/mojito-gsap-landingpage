@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import GsapPlugin from "@/components/gsapPlugin";
-
+import { monaSans } from "@/lib/fonts";
 export const metadata: Metadata = {
   title: "Mojito GSAP Landing Page",
   description: "A stunning landing page built with GSAP and Next.js",
@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>
+      <body className={`antialiased ${monaSans.className}`}>
         <GsapPlugin>
           <Navbar />
           <main>{children}</main>

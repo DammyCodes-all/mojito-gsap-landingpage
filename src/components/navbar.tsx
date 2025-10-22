@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import gsap from "gsap";
 import { useRef } from "react";
+
 const Navbar = () => {
   const navref = useRef<HTMLElement | null>(null);
   useGSAP(() => {
@@ -20,11 +21,11 @@ const Navbar = () => {
         navref.current,
         {
           backgroundColor: "transparent",
+          backdropFilter: "blur(0px)",
         },
         {
-          backgroundColor: "#00000050",
-          // position: "fixed",
-          backgroundFilter: "blur(10px)",
+          backgroundColor: "rgba(0,0,0,0.35)",
+          backdropFilter: "blur(18px)",
           duration: 1,
           ease: "power1.inOut",
         }
