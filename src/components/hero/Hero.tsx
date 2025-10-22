@@ -34,6 +34,29 @@ export const Hero = () => {
       yPercent: 70,
       duration: 1.8,
     });
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      })
+      .to(
+        "#right-leaf",
+        {
+          y: 200,
+        },
+        0
+      )
+      .to(
+        "#left-leaf",
+        {
+          y: -200,
+        },
+        0
+      );
   }, []);
   return (
     <section
@@ -58,6 +81,7 @@ export const Hero = () => {
         src={"/images/hero-left-leaf.png"}
         width={300}
         height={300}
+        id="left-leaf"
         alt="hero-left-leaf"
         className="absolute left-0 md:top-20 xl:top-36 2xl:top-52 md:bottom-auto -bottom-20 md:w-fit w-1/3"
       />
@@ -66,6 +90,7 @@ export const Hero = () => {
         width={300}
         height={300}
         alt="hero-right-leaf"
+        id="right-leaf"
         className="absolute right-0 md:bottom-0 xl:top-0 2xl:top-12 top-1/2 md:w-fit w-24"
       />
       <div className="container mx-auto absolute left-1/2 -translate-x-1/2 lg:bottom-20 top-auto md:top-[45vh] flex justify-between items-end px-5">

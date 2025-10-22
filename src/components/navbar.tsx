@@ -25,7 +25,7 @@ const Navbar = () => {
         },
         {
           backgroundColor: "rgba(0,0,0,0.35)",
-          backdropFilter: "blur(18px)",
+          backdropFilter: "blur(10px)",
           duration: 1,
           ease: "power1.inOut",
         }
