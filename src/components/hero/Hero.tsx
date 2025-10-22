@@ -60,24 +60,34 @@ export const Hero = () => {
         },
         0
       );
-    if (!videoRef.current) return;
+  }, []);
+  useGSAP(() => {
+    const video = videoRef.current;
+    if (!video) {
+      console.log("There was no video");
+      return;
+    }
+    video.load();
     const vidTweenStartValue = isMobile ? "top 50%" : "center 60%";
     const vidTweenEndValue = isMobile ? "120% top" : "bottom top";
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: videoRef.current,
-        start: vidTweenStartValue,
-        end: vidTweenEndValue,
-        scrub: true,
-        pin: true,
-      },
-    });
-    videoRef.current.onloadedmetadata = () => {
-      tl.to(videoRef.current, {
-        currentTime: videoRef.current?.duration,
+
+    video.onloadedmetadata = () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: video,
+          start: vidTweenStartValue,
+          end: vidTweenEndValue,
+          scrub: true,
+          pin: true,
+        },
+      });
+      tl.to(video, {
+        currentTime: video?.duration,
+        ease: "none",
       });
     };
-  }, []);
+  }, [isMobile]);
+
   return (
     <>
       <section
@@ -139,7 +149,7 @@ export const Hero = () => {
           </div>
         </div>
       </section>
-      <section className="w-full md:h-[80%] h-1/2 absolute bottom-0 left-0 md:object-contain object-bottom object-cover inset-0 ">
+      <div className="w-full md:h-[80%] h-1/2 absolute bottom-0 left-0 md:object-contain object-bottom object-cover inset-0 ">
         <video
           src={"/videos/input.mp4"}
           muted
@@ -147,7 +157,7 @@ export const Hero = () => {
           preload="auto"
           ref={videoRef}
         />
-      </section>
+      </div>
     </>
   );
 };
