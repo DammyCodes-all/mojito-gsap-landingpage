@@ -64,12 +64,11 @@ export const Hero = () => {
   useGSAP(() => {
     const video = videoRef.current;
     if (!video) {
-      console.log("There was no video");
       return;
     }
     video.load();
     const vidTweenStartValue = isMobile ? "top 50%" : "center 60%";
-    const vidTweenEndValue = isMobile ? "120% top" : "bottom top";
+    const vidTweenEndValue = isMobile ? "120% top" : "118% top";
 
     video.onloadedmetadata = () => {
       const tl = gsap.timeline({
@@ -81,10 +80,17 @@ export const Hero = () => {
           pin: true,
         },
       });
-      tl.to(video, {
-        currentTime: video?.duration,
-        ease: "none",
-      });
+      tl.fromTo(
+        video,
+        {
+          scale: 1.3,
+        },
+        {
+          currentTime: video?.duration,
+          scale: 1,
+          ease: "none",
+        }
+      );
     };
   }, [isMobile]);
 
@@ -149,9 +155,9 @@ export const Hero = () => {
           </div>
         </div>
       </section>
-      <div className="w-full md:h-[80%] h-1/2 absolute bottom-0 left-0 md:object-contain object-bottom object-cover inset-0 ">
+      <div className="w-full md:h-[80%] h-1/2 absolute bottom-0 left-0 md:object-contain object-bottom object-cover inset-0 flex justify-center items-center ">
         <video
-          src={"/videos/input.mp4"}
+          src={"/videos/output.mp4"}
           muted
           playsInline
           preload="auto"
