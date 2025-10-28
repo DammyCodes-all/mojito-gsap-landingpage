@@ -10,7 +10,6 @@ const Page = () => {
       <Cocktails />
       <About />
       <Art />
-      <div className="h-dvh"></div>
     </div>
   );
 };
