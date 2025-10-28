@@ -32,10 +32,9 @@ export const Cocktails = () => {
     >
       <Image
         src={"/images/noise.png"}
-        className="absolute inset-0 size-full -z-50"
+        className="absolute inset-0 size-ful"
         fill
-        loading="eager"
-        priority
+        loading="lazy"
         alt="bg-noise-image"
       />
       <Image

@@ -1,4 +1,5 @@
 import { Hero } from "@/components/Hero";
+import { About } from "@/components/about";
 import { Cocktails } from "@/components/cocktails";
 
 const Page = () => {
@@ -6,6 +7,7 @@ const Page = () => {
     <div className="overflow-x-hidden w-full ">
       <Hero />
       <Cocktails />
+      <About />
       <div className="h-dvh"></div>
     </div>
   );
