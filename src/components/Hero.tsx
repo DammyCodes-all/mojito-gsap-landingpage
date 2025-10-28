@@ -68,7 +68,7 @@ export const Hero = () => {
     }
     video.load();
     const vidTweenStartValue = isMobile ? "top 50%" : "center 60%";
-    const vidTweenEndValue = isMobile ? "120% top" : "118% top";
+    const vidTweenEndValue = isMobile ? "120% top" : "108% top";
 
     video.onloadedmetadata = () => {
       const tl = gsap.timeline({
@@ -160,6 +160,7 @@ export const Hero = () => {
           src={"/videos/output.mp4"}
           muted
           playsInline
+          autoPlay
           preload="auto"
           ref={videoRef}
         />
