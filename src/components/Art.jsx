@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
 import { useMediaQuery } from "react-responsive";
-
+import { CheckCircle2 } from "lucide-react";
 const Art = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   useGSAP(() => {
@@ -35,6 +35,7 @@ const Art = () => {
       .to("#masked-content", {
         opacity: 1,
         duration: 1,
+        yPercent: -20,
         ease: "power3.inOut",
       });
   });
@@ -51,13 +52,7 @@ const Art = () => {
           <ul className="space-y-3 will-fade">
             {goodLists.map((feature, index) => (
               <li key={index} className="flex gap-2 flex-center w-full">
-                <Image
-                  src={"/images/check.png"}
-                  alt="check"
-                  width={16}
-                  height={16}
-                  loading="lazy"
-                />
+                <CheckCircle2 />
                 <p>{feature}</p>
               </li>
             ))}
@@ -75,20 +70,14 @@ const Art = () => {
           <ul className="space-y-3 will-fade">
             {featureLists.map((good, index) => (
               <li key={index} className="flex gap-2 flex-center w-full">
-                <Image
-                  src={"/images/check.png"}
-                  alt="check"
-                  width={16}
-                  height={16}
-                  loading="lazy"
-                />
+                <CheckCircle2 />
                 <p className="md:w-fit w-50">{good}</p>
               </li>
             ))}
           </ul>
         </div>
         <div className="">
-          <h2 className="text-4xl md:text-5xl font-modern-negra text-center mb-10 text-white  will-fade">
+          <h2 className=" hidden md:block text-4xl md:text-5xl font-modern-negra text-center mb-10 text-white  will-fade">
             Sip worthy perfection
           </h2>
           <div
