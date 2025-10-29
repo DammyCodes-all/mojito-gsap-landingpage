@@ -9,13 +9,13 @@ import { useMediaQuery } from "react-responsive";
 const Art = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   useGSAP(() => {
-    const start = isMobile ? "top 20%" : "15% top";
+    const start = isMobile ? "top 20%" : "11% top";
     const maskTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: "#art",
         start: start,
         end: "bottom center",
-        scrub: 0.2,
+        scrub: 2,
         pin: true,
       },
     });
@@ -88,7 +88,7 @@ const Art = () => {
           </ul>
         </div>
         <div className="">
-          <h2 className="text-4xl md:text-5xl font-modern-negra text-center mb-10 text-white mt-32 will-fade">
+          <h2 className="text-4xl md:text-5xl font-modern-negra text-center mb-10 text-white  will-fade">
             Sip worthy perfection
           </h2>
           <div
