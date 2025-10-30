@@ -33,6 +33,23 @@ const Carousel = () => {
       { yPercent: 0, opacity: 100, ease: "power1.inOut" }
     );
   }, [activeCocktailIndex]);
+  useGSAP(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#menu",
+          scrub: true,
+          start: "top top",
+          end: "bottom top",
+        },
+      })
+      .to("#left-leaf", {
+        yPercent: -100,
+      })
+      .to("#right-leaf", {
+        yPercent: 100,
+      });
+  }, []);
 
   const goToSlide = (index: number) => {
     const newIndex = (index + allCocktails.length) % allCocktails.length;
@@ -50,16 +67,16 @@ const Carousel = () => {
         alt="slider-left-leaf"
         className="object-contain absolute -bottom-50 left-0 md:w-fit w-1/3"
         id="left-leaf"
-        width={300}
-        height={300}
+        width={100}
+        height={100}
       />
       <Image
         src={"/images/slider-right-leaf.png"}
         alt="slider-right-leaf"
         className="object-contain absolute -top-40 right-0 md:w-fit w-1/4"
         id="right-leaf"
-        width={300}
-        height={300}
+        width={100}
+        height={100}
       />
       <h2 id="menu-heading" className="sr-only">
         Cocktail menu
@@ -116,8 +133,8 @@ const Carousel = () => {
             src={currentCocktail.image}
             className="object-contain h-auto cocktail-image"
             alt="current-cocktail"
-            height={800}
-            width={300}
+            height={1000}
+            width={400}
           />
         </div>
         <div className="flex max-md:flex-col gap-10 md:items-center justify-between w-full lg:absolute bottom-5">
