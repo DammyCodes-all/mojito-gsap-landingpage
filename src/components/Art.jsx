@@ -48,7 +48,7 @@ const Art = () => {
         <h2 className="will-fade relative md:text-[20vw] text-8xl text-nowrap leading-none font-modern-negra text-center text-[#505050] mb-8">
           The ART
         </h2>
-        <div className="flex md:flex-row flex-col justify-between md:mb-10 md:mt-0 mt-40 gap-10">
+        <div className="flex md:flex-row flex-col mb-10 justify-between md:mb-10 md:mt-0 mt-40 gap-10">
           <ul className="space-y-3 will-fade">
             {goodLists.map((feature, index) => (
               <li key={index} className="flex gap-2 flex-center w-full">
@@ -76,12 +76,12 @@ const Art = () => {
             ))}
           </ul>
         </div>
-        <div className="">
+        <div>
           <h2 className=" hidden md:block text-4xl md:text-5xl font-modern-negra text-center mb-10 text-white  will-fade">
             Sip worthy perfection
           </h2>
           <div
-            className="opacity-0 md:px-0 px-5 space-y-2 absolute md:bottom-5 bottom-52 left-1/2 -translate-x-1/2"
+            className="opacity-0 md:px-0 px-5 space-y-5 absolute sm:-bottom-14 bottom-69 left-1/2 -translate-x-1/2"
             id="masked-content"
           >
             <h3 className=" md:text-4xl text-xl text-center font-serif md:w-full w-80 text-white">
