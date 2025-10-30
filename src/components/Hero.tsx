@@ -67,7 +67,7 @@ export const Hero = () => {
       return;
     }
     video.load();
-    const vidTweenStartValue = isMobile ? "20% 30%" : "center 60%";
+    const vidTweenStartValue = isMobile ? "20% 30%" : "center 69.5%";
     const vidTweenEndValue = isMobile ? "120% top" : "108% top";
 
     video.onloadedmetadata = () => {
@@ -161,7 +161,7 @@ export const Hero = () => {
           muted
           playsInline
           autoPlay
-          preload="auto"
+          preload="metadata"
           ref={videoRef}
         />
       </div>
