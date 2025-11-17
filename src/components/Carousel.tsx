@@ -106,7 +106,7 @@ const Carousel = () => {
         })}
       </nav>
       <section className="flex flex-col justify-between items-center container mx-auto relative">
-        <div className="flex items-center justify-between w-full absolute ">
+        <div className="flex items-center justify-between w-full absolute z-50 ">
           <button
             className="text-left text-white hover:text-yellow cursor-pointer transition-colors max-w-36 flex gap-2 justify-start items-center"
             onClick={() => goToSlide(activeCocktailIndex - 1)}
