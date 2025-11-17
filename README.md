@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mojito — GSAP-powered Next.js Landing Page
 
-## Getting Started
+Lightweight Next.js landing page template using GSAP for animations. Bootstrapped with create-next-app (App Router).
 
-First, run the development server:
+## Project overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Purpose: a minimal, performant landing page built with Next.js (App Router) and GSAP for timeline-driven animations and micro-interactions.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+What you'll find:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js app folder structure (app/)
+- Example landing page at app/page.tsx
+- GSAP animation setup and example animation(s)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Requirements
 
-## Learn More
+- Node.js 16.8+ (recommended 18+)
+- npm / yarn / pnpm / bun
 
-To learn more about Next.js, take a look at the following resources:
+## Quick start
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Install dependencies:
+   npm install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   # or
 
-## Deploy on Vercel
+   yarn
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   # or
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   pnpm install
+
+2. Run the dev server:
+   npm run dev
+
+   # opens at http://localhost:3000
+
+3. Build for production:
+   npm run build
+   npm start
+   # or use `npm run preview` to preview a production build locally
+
+## Important scripts
+
+- dev: next dev
+- build: next build
+- start: next start
+- preview: next start --preview (if configured)
+  (See package.json for full script names)
+
+## Where to edit
+
+- app/page.tsx — main landing page content and entry point for animations.
+- app/layout.tsx — global layout, fonts, metadata.
+- public/ — static assets (images, icons).
+- styles/ or app globals — global styles (if present).
+
+## Notes on GSAP
+
+- GSAP is used for timeline animations. Typical pattern:
+  - Create a ref for the element (or query selector in useEffect).
+  - Create a timeline (gsap.timeline()) and add tweens.
+  - Kill or revert the timeline on cleanup to avoid memory leaks.
+- If using server-side rendering (Next.js), import GSAP dynamically or guard usage to run only in the browser (e.g., inside useEffect or with dynamic import).
+
+Example pattern:
+
+- useEffect(() => {
+  // import('gsap').then(({ gsap }) => { /_ create timeline _/ });
+  }, []);
+
+## Environment & Deployment
+
+No special environment variables required for the template. For deployment:
+
+- Vercel: push to a Git repo and import to Vercel (automatic Next.js support).
+- Other hosts: build with `npm run build` and serve with `npm start` or follow host-specific docs.
+
+## Contributing
+
+- Open issues for bugs or feature requests.
+- Create PRs for improvements — keep changes focused and document behavior.
+
+## License
+
+MIT (or change to your preferred license)
+
+## Troubleshooting
+
+- If animations don't run in dev, ensure GSAP is loaded only in the browser (see GSAP notes).
+- If static assets 404, check paths under public/ and references in code.
+
+<!-- End of README -->
